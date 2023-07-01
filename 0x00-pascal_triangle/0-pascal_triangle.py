@@ -1,20 +1,20 @@
-def print_pascal_triangle(n):
-    triangle = []
-    for i in range(n):
-        row = [1]  # First element of each row is always 1
-        if triangle:
-            # Calculate the remaining elements of the row
-            prev_row = triangle[-1]
-            for j in range(len(prev_row) - 1):
-                row.append(prev_row[j] + prev_row[j+1])
-            row.append(1)  # Last element of each row is always 1
-        triangle.append(row)
-    
-    # Print Pascal's triangle
-    for row in triangle:
-        print(" ".join(str(num) for num in row))
+#!/usr/bin/python3
+"""
+0. Pascal's Triangle
+"""
 
-# Test the function
-n = int(input("Enter the number of rows: "))
-print_pascal_triangle(n)
 
+def pascal_triangle(n):
+    """Create a function def pascal_triangle(n): that returns a list of lists
+    of integers representing the Pascal’s triangle of n
+    """
+    res = []
+    if n > 0:
+        for i in range(1, n + 1):
+            level = []
+            C = 1
+            for j in range(1, i + 1):
+                level.append(C)
+                C = C * (i - j) // j
+            res.append(level)
+    return res
